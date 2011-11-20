@@ -26,21 +26,22 @@ public class PlayerPaddle extends Paddle
 		{
 			public void actionPerformed(ActionEvent e)
 			{
+
 				moveDown();
 			}
 		};
 
 		if(s == Side.LEFT)
 		{
-			pp.getInputMap().put(KeyStroke.getKeyStroke("W"), "upL");
-			pp.getInputMap().put(KeyStroke.getKeyStroke("S"), "downL");
+			pp.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("W"), "upL");
+			pp.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("S"), "downL");
 			pp.getActionMap().put("upL", moveUp);
 			pp.getActionMap().put("downL", moveDown);
 		}
 		else
 		{
-			pp.getInputMap().put(KeyStroke.getKeyStroke("UP"), "upR");
-			pp.getInputMap().put(KeyStroke.getKeyStroke("DOWN"), "downR");
+			pp.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("UP"), "upR");
+			pp.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke("DOWN"), "downR");
 			pp.getActionMap().put("upR", moveUp);
 			pp.getActionMap().put("downR", moveDown);
 		}

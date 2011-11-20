@@ -1,6 +1,6 @@
-
 import java.awt.geom.*;
 import java.awt.*;
+
 public class Paddle
 {
 	protected PongPanel pp;

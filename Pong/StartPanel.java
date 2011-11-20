@@ -40,8 +40,6 @@ class StartPanel extends JPanel
 			public void actionPerformed(ActionEvent e)
 			{
 				pf.addPongPanel(new PongPanel(pf, period, Choice.LOCAL));
-				//pf.getContentPane().remove(((JButton)e.getSource()).getTopLevelAncestor());
-				//pf.pack();
 			}
 		});
 		add(localMultiChoice, "Center");

@@ -32,6 +32,11 @@ public class AIPaddle extends Paddle
 	public void hitBall()
 	{
 		hitCount++;
+//		if(hitCount >= 3)
+//		{
+//			reactionTimer.cancel();
+//			reactionTimer.purge();
+//		}
 	}
 
 	public void adjustPosition(Area ballArea)
@@ -65,6 +70,12 @@ public class AIPaddle extends Paddle
 	public void ballHasRespawned()
 	{
 		hitCount = 0;
+	}
+
+	public void stopTimer()
+	{
+		reactionTimer.cancel();
+		reactionTimer.purge();
 	}
 
 	public void draw(Graphics2D g)

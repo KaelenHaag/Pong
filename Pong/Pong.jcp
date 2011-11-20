@@ -54,6 +54,9 @@
 				<path>PongPanel.java</path>
 			</fileitem>
 			<fileitem>
+				<path>PongPlayerHandler.java</path>
+			</fileitem>
+			<fileitem>
 				<path>StartPanel.java</path>
 			</fileitem>
 		</include>

@@ -51,7 +51,7 @@
 			<path>Ball.java</path>
 			<source>true</source>
 			<index>6</index>
-			<active>true</active>
+			<active>false</active>
 		</docitem>
 		<docitem>
 			<path>AIPaddle.java</path>
@@ -63,6 +63,18 @@
 			<path>OnlinePanel.java</path>
 			<source>true</source>
 			<index>8</index>
+			<active>true</active>
+		</docitem>
+		<docitem>
+			<path>PongHost.java</path>
+			<source>true</source>
+			<index>9</index>
+			<active>false</active>
+		</docitem>
+		<docitem>
+			<path>PongPlayerHandler.java</path>
+			<source>true</source>
+			<index>10</index>
 			<active>false</active>
 		</docitem>
 	</open_files>

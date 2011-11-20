@@ -19,7 +19,7 @@ public class PongPanel extends JPanel implements Runnable
 
 	private Thread animator;
 
-	private int player1Score = 0, player2Score = 0;
+	private int leftPlayerScore = 0, rightPlayerScore = 0;
 
 	private PongFrame pf;
 
@@ -37,14 +37,14 @@ public class PongPanel extends JPanel implements Runnable
 	private long framesSkipped = 0L;
 	private long totalFramesSkipped = 0L;
 
-	private boolean isPaused = false;
-	private boolean running = false;
-	private boolean gameOver = false;
+	private volatile boolean isPaused = false;
+	private volatile boolean running = false;
+	private volatile boolean gameOver = false;
 
-	private PlayerPaddle p1, p2;
-	private AIPaddle ai1;
-	private Paddle paddles[] = new Paddle[2];
-	private Ball ball;
+	private volatile PlayerPaddle p1, p2;
+	private volatile AIPaddle ai1;
+	private volatile Paddle paddles[] = new Paddle[2];
+	private volatile Ball ball;
 
 	private StartPanel.Choice c;
 
@@ -116,7 +116,7 @@ public class PongPanel extends JPanel implements Runnable
 	{
 		if(animator == null || !running)
 		{
-			animator = new Thread(this);
+			animator = new Thread(this, "animator");
 			animator.start();
 		}
 		ball.startTimer(1000);
@@ -180,7 +180,11 @@ public class PongPanel extends JPanel implements Runnable
 			beforeTime = System.nanoTime();
 		}
 		printStats();
-		System.exit(0);
+		ball.stopTimer();
+		if(ai1 != null)
+			ai1.stopTimer();
+		return;
+		//System.exit(0);
 	}
 
 	private void gameRender()
@@ -203,7 +207,7 @@ public class PongPanel extends JPanel implements Runnable
 		g.setColor(Color.WHITE);
 		g.fillRect(0,0, PongFrame.WIDTH, PongFrame.HEIGHT);
 
-		String msg = player1Score + " : " + player2Score;
+		String msg = leftPlayerScore + " : " + rightPlayerScore;
 		int x = (PongFrame.WIDTH - metrics.stringWidth(msg)) / 2;
 		g.setFont(font);
 		g.setColor(Color.ORANGE);
@@ -235,21 +239,33 @@ public class PongPanel extends JPanel implements Runnable
 			}
 			g.dispose();
 		}
-		catch(Exception e)
+		catch(NullPointerException e)
 		{
-			System.out.println(e);
+			running = false;
 		}
+	}
+
+	public void restartGame()
+	{
+		rightPlayerScore = 0;
+		leftPlayerScore = 0;
+		ball.respawn();
 	}
 
 	public void updateScore(int dx)
 	{
 		if(dx < 0)
 		{
-			player2Score++;
+			rightPlayerScore++;
 		}
 		else
 		{
-			player1Score++;
+			leftPlayerScore++;
+		}
+
+		if(rightPlayerScore >= 7 || leftPlayerScore >= 7)
+		{
+			restartGame();
 		}
 	}
 
@@ -266,6 +282,7 @@ public class PongPanel extends JPanel implements Runnable
 	public void stopGame()
 	{
 		running = false;
+		System.exit(0);
 	}
 
 	public boolean isPaused()
@@ -278,10 +295,10 @@ public class PongPanel extends JPanel implements Runnable
 		return running;
 	}
 
-//	public boolean isGameOver()
-//	{
-//		return gameOver;
-//	}
+	public boolean isGameOver()
+	{
+		return gameOver;
+	}
 
 	public Paddle getPlayer1()
 	{
@@ -362,6 +379,6 @@ public class PongPanel extends JPanel implements Runnable
 		System.out.println("Frame Count/Loss: " + frameCount + " / " + totalFramesSkipped);
 		System.out.println("Average FPS: " + df.format(avgFPS));
     	System.out.println("Time Spent: " + timeSpentInGame + " secs");
-    	System.out.println("Player 1 Score: " + player1Score + " Player 2 Score: " + player2Score);
+    	System.out.println("Player 1 Score: " + leftPlayerScore + " Player 2 Score: " + rightPlayerScore);
 	}
 }

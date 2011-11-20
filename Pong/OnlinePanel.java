@@ -1,5 +1,6 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.*;
 
 public class OnlinePanel extends JPanel
 {
@@ -16,6 +17,7 @@ public class OnlinePanel extends JPanel
 
 	public void createUserInterface()
 	{
+		setLayout(null);
 		setBackground(Color.WHITE);
 		setPreferredSize(new Dimension(PongFrame.WIDTH, PongFrame.HEIGHT));
 
@@ -23,9 +25,33 @@ public class OnlinePanel extends JPanel
 		requestFocus();
 
 		host = new JButton("Host a Game");
-		add(host, "Center");
+		host.setBounds(225,150, 150, 23);
+		host.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent e)
+			{
+				//featureNotAvailable();
+				new PongHost();
+				System.out.println("Contacting server...");
+			}
+		});
+		add(host);
 
 		join = new JButton("Join a Game");
-		add(join, "Center");
+		join.setBounds(225,200, 150, 23);
+		join.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent e)
+			{
+				featureNotAvailable();
+				System.out.println("Contacting Server...");
+			}
+		});
+		add(join);
+	}
+	
+	private void featureNotAvailable()
+	{
+		JOptionPane.showMessageDialog(null, "Unfortunately, this feature is not available at this time.");
 	}
 }

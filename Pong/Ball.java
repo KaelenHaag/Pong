@@ -38,7 +38,7 @@ public class Ball
 		{
 			public void run()
 			{
-				if(!pp.isPaused() && pp.isRunning())
+				if(!pp.isPaused() && pp.isRunning() && !pp.isGameOver())
 				{
 					timePassed += movementTime;
 					move();
@@ -61,7 +61,8 @@ public class Ball
 		long previousSpeed = movementTime;
 		if(movementTime - 1 > 15)
 			movementTime--;
-		startTimer(previousSpeed);
+		startTimer(0);
+		System.out.println(movementTime);
 	}
 
 	public Timer getMovementTimer()
@@ -75,52 +76,49 @@ public class Ball
 		AffineTransform tempT = AffineTransform.getTranslateInstance(dx, dy);
 		temp.transform(tempT);
 
-		//Tests if hit wall
-		if(temp.getBounds().getY() + 10 > PongFrame.HEIGHT || temp.getBounds().getY() < 0)
-		{
-			dy = -dy;
-		}
-
-		//create a new area to test new transformations for collisions to paddle
-		temp = new Area(ballArea);
-		tempT = AffineTransform.getTranslateInstance(dx,dy);
-		temp.transform(tempT);
-
-		//Tests if hit paddle
-		Paddle[] paddles = pp.getPaddles();
-		for(int i = 0; i < paddles.length; i++)
-		{
-			if(temp.intersects(paddles[i].getPaddleArea().getBounds()))
-			{
-				if(paddles[i] instanceof AIPaddle)
-				{
-					((AIPaddle)paddles[i]).hitBall();
-				}
-				dx = -dx;
-			}
-		}
-
 		//Tests if scored
 		if(temp.getBounds().getX() >= PongFrame.WIDTH || temp.getBounds().getX() < 0)
+		{
+			pp.updateScore(dx);
 			respawn();
+		}
+		else
+		{
+			//Tests if hit wall
+			if(temp.getBounds().getY() + 10 > PongFrame.HEIGHT || temp.getBounds().getY() < 0)
+			{
+				dy = -dy;
+			}
 
+			//create a new area to test new transformations for collisions to paddle
+			temp = new Area(ballArea);
+			tempT = AffineTransform.getTranslateInstance(dx,dy);
+			temp.transform(tempT);
+
+			//Tests if hit paddle
+			Paddle[] paddles = pp.getPaddles();
+			for(int i = 0; i < paddles.length; i++)
+			{
+				if(temp.intersects(paddles[i].getPaddleArea().getBounds()))
+				{
+					if(paddles[i] instanceof AIPaddle)
+					{
+						((AIPaddle)paddles[i]).hitBall();
+					}
+					dx = -dx;
+					break;
+				}
+			}
+		}
 		AffineTransform t = AffineTransform.getTranslateInstance(dx, dy);
 		ballArea.transform(t);
-
-//		//if true, updates the AI on the ball's current position
-//		if(pp.getAIPlayer() != null)
-//		{
-//			((AIPaddle)pp.getAIPlayer()).adjustPosition(ballArea);
-//		}
 	}
 
 	//Respawn the ball
 	//handles restarting the timer,creating a new area, and updating the score
 	public void respawn()
 	{
-		movementTimer.cancel();
-		movementTimer.purge();
-		pp.updateScore(dx);
+		stopTimer();
 
 		if(pp.getAIPlayer() != null)
 		{
@@ -133,6 +131,12 @@ public class Ball
 		movementTime = 30;
 		timePassed = 0;
 		startTimer(1000);
+	}
+
+	public void stopTimer()
+	{
+		movementTimer.cancel();
+		movementTimer.purge();
 	}
 
 	public void addAIPaddle(AIPaddle ai)
