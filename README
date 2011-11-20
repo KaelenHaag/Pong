@@ -7,3 +7,4 @@ James Madison High School
 
 //Some code used from Andrew Davison's book Killer Game Programming in Java
 //Website of book http://fivedots.coe.psu.ac.th/~ad/jg
+I do think that there are still some memory problems after I managed to fix the glaring ones. I believe the issue involves the back button and the panels not being properly destroyed or something.
