@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<workspace>
+	<settings>
+		<label>PongServer</label>
+	</settings>
+	<users>
+		<user>
+			<path>PongServer.jcu</path>
+		</user>
+	</users>
+	<projects>
+		<project>
+			<path>PongServer.jcp</path>
+		</project>
+	</projects>
+</workspace>
