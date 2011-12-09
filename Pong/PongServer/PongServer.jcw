@@ -3,6 +3,8 @@
 <workspace>
 	<settings>
 		<label>PongServer</label>
+		<id>132</id>
+		<version>0</version>
 	</settings>
 	<users>
 		<user>

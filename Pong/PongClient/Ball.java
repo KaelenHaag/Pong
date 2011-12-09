@@ -59,8 +59,8 @@ public class Ball
 		movementTimer.purge();
 		movementTimer.cancel();
 		long previousSpeed = movementTime;
-		if(movementTime - 1 > 15)
-			movementTime--;
+		if(movementTime - 2 > 10)
+			movementTime -= 2;
 		startTimer(0);
 		System.out.println(movementTime);
 	}

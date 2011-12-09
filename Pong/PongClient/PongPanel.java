@@ -53,6 +53,7 @@ public class PongPanel extends JPanel implements Runnable
 	private Graphics2D g;
 	private Image img = null;
 
+	private String statusMsg;
 	private Font font;
 	private FontMetrics metrics;
 
@@ -95,12 +96,12 @@ public class PongPanel extends JPanel implements Runnable
 				break;
 
 			case AI:
+			case ONLINE:
 				ai1 = new AIPaddle(this, Paddle.Side.LEFT);
 				p1 = new PlayerPaddle(this, Paddle.Side.RIGHT);
 				paddles[0] = ai1;
 				paddles[1] = p1;
 				break;
-
 		}
 
 	}
@@ -110,6 +111,15 @@ public class PongPanel extends JPanel implements Runnable
 		super.addNotify();
 		requestFocus();
 		startGame();
+	}
+
+	public void removeNotify()
+	{
+		super.removeNotify();
+		System.out.println("Remove notify");
+		ball.stopTimer();
+		if(ai1 != null)
+			ai1.stopTimer();
 	}
 
 	public void startGame()
@@ -180,9 +190,6 @@ public class PongPanel extends JPanel implements Runnable
 			beforeTime = System.nanoTime();
 		}
 		printStats();
-		ball.stopTimer();
-		if(ai1 != null)
-			ai1.stopTimer();
 		return;
 		//System.exit(0);
 	}
@@ -212,8 +219,16 @@ public class PongPanel extends JPanel implements Runnable
 		g.setFont(font);
 		g.setColor(Color.ORANGE);
 		g.drawString(msg, x, metrics.getHeight());
-		
-		
+
+		statusMsg = "Waiting...";
+		if(c == StartPanel.Choice.ONLINE && statusMsg != null)
+		{
+
+			 x = (PongFrame.WIDTH - metrics.stringWidth(statusMsg)) / 2;
+			 g.drawString(statusMsg, x, (PongFrame.HEIGHT - metrics.getHeight() - 10));
+		}
+
+
 		if(isPaused)
 		{
 			g.drawString("Paused!", (PongFrame.WIDTH - metrics.stringWidth("Paused!")) / 2, (PongFrame.HEIGHT - metrics.getHeight()) / 2);
@@ -228,6 +243,7 @@ public class PongPanel extends JPanel implements Runnable
 				break;
 
 			case AI:
+			case ONLINE:
 				ai1.draw(g);
 				break;
 		}
@@ -329,6 +345,11 @@ public class PongPanel extends JPanel implements Runnable
 	public Ball getBall()
 	{
 		return ball;
+	}
+
+	public StartPanel.Choice getChoice()
+	{
+		return c;
 	}
 
 	private void storeStats()

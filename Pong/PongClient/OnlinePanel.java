@@ -31,7 +31,7 @@ public class OnlinePanel extends JPanel
 			public void actionPerformed(ActionEvent e)
 			{
 				//featureNotAvailable();
-				new PongHost();
+				new PongHost(pf);
 				System.out.println("Contacting server...");
 			}
 		});
@@ -43,14 +43,14 @@ public class OnlinePanel extends JPanel
 		{
 			public void actionPerformed(ActionEvent e)
 			{
-				featureNotAvailable();
-				//new PongClient
+				//featureNotAvailable();
+				new PongClient(pf);
 				System.out.println("Contacting Server...");
 			}
 		});
 		add(join);
 	}
-	
+
 	private void featureNotAvailable()
 	{
 		JOptionPane.showMessageDialog(null, "Unfortunately, this feature is not available at this time.");

@@ -30,6 +30,10 @@
 				<path>src</path>
 			</folderitem>
 			<fileitem>
+				<path>src\HostInfo.java</path>
+				<folder>src</folder>
+			</fileitem>
+			<fileitem>
 				<path>src\PongPlayerHandler.java</path>
 				<folder>src</folder>
 			</fileitem>

@@ -33,6 +33,9 @@
 				<path>Ball.java</path>
 			</fileitem>
 			<fileitem>
+				<path>HostInfo.java</path>
+			</fileitem>
+			<fileitem>
 				<path>OnlinePanel.java</path>
 			</fileitem>
 			<fileitem>
@@ -54,7 +57,13 @@
 				<path>PongHost.java</path>
 			</fileitem>
 			<fileitem>
+				<path>PongNetworkingBase.java</path>
+			</fileitem>
+			<fileitem>
 				<path>PongPanel.java</path>
+			</fileitem>
+			<fileitem>
+				<path>PongWatcher.java</path>
 			</fileitem>
 			<fileitem>
 				<path>StartPanel.java</path>

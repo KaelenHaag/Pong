@@ -4,7 +4,6 @@
 import javax.swing.*;
 import java.awt.event.*;
 import java.awt.*;
-//import java.applet.*;
 import java.util.*;
 
 
@@ -31,7 +30,7 @@ public class PongFrame extends JFrame implements WindowListener
 		super("Pong");
 
 		createUserInterface(period);
-		
+
 		//I know im going to online have one panel(menu/game) being shown at a time so when a panel is being added I can remove the previous one.
 		getContentPane().addContainerListener(new ContainerListener()
 		{
@@ -41,8 +40,8 @@ public class PongFrame extends JFrame implements WindowListener
 				if(e.getChild() instanceof PongPanel)
 				{
 					pp = (PongPanel)e.getChild();
-					menus.push(pp);
-					currentPanel = pp;
+					//menus.push(pp);
+					//currentPanel = pp;
 					backButton.setEnabled(true);
 				}
 				else
@@ -50,8 +49,8 @@ public class PongFrame extends JFrame implements WindowListener
 					if(e.getChild() instanceof OnlinePanel)
 					{
 						op = (OnlinePanel)e.getChild();
-						menus.push(op);
-						currentPanel = op;
+						//menus.push(op);
+						//currentPanel = op;
 						backButton.setEnabled(true);
 					}
 					else
@@ -59,16 +58,35 @@ public class PongFrame extends JFrame implements WindowListener
 						if(e.getChild() instanceof StartPanel)
 						{
 							backButton.setEnabled(false);
-							currentPanel = sp;
+							//currentPanel = sp;
 						}
-					} 
+						else
+						{
+							backButton.setEnabled(true);
+						}
+					}
 				}
+
+				//We want to make sure that there isn't any of the same panels in the stack
+				//An issue was arising with the back button and the program automatically readding the panel to the stack without making sure there
+				//werent any duplicates which would cause a panel to loop continously. Problem wouldn't have been caught if there weren't more than
+				//2 panels in the stack. Might be a better way to fix this
+				if(menus.search(e.getChild()) == -1)
+				{
+					//System.out.println("No copies of this panel found adding now");
+					menus.push((JPanel) e.getChild());
+				}
+				currentPanel = (JPanel) e.getChild();
+
+				//System.out.println(currentPanel);
 				validate();
-				
+				repaint();
+
 			}
-			
+
 			public void componentRemoved(ContainerEvent e)
 			{
+				//System.out.println("Panel being removed: " + e.getChild());
 				if(e.getChild() instanceof PongPanel)
 				{
 					pp = null;
@@ -82,13 +100,13 @@ public class PongFrame extends JFrame implements WindowListener
 				}
 			}
 		});
-		
-		
+
+
 		addWindowListener(this);
 		pack();
-		
-		
-		
+
+
+
 		//Code from http://www.java2s.com/Code/Java/Swing-JFC/CenterOnScreen.htm
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 		Dimension frameSize = getSize();
@@ -125,11 +143,11 @@ public class PongFrame extends JFrame implements WindowListener
 	private void backButtonActionPerformed(ActionEvent e)
 	{
 		System.out.println(Thread.activeCount());
-		
+
 		// Main idea here is that the start panel should never be removed because there wouldn't be anymore menus!
 		if(!(menus.peek() instanceof StartPanel))
 		{
-			menus.pop(); //Gets rid of the currentPanel from the stack
+			System.out.println("Popping: " + menus.pop()); //Gets rid of the currentPanel from the stack
 			getContentPane().add(menus.peek());
 			repaint();
 		}

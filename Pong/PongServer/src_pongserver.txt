@@ -1,2 +1,3 @@
-"C:\\Users\\John Haag\\Desktop\\Pong\\PongServer\\PongServer\\src\\PongPlayerHandler.java"
-"C:\\Users\\John Haag\\Desktop\\Pong\\PongServer\\PongServer\\src\\PongServer.java"
+G:\Pong\PongServer\src\HostInfo.java
+G:\Pong\PongServer\src\PongPlayerHandler.java
+G:\Pong\PongServer\src\PongServer.java

@@ -18,13 +18,25 @@
 			<path>src\PongServer.java</path>
 			<source>true</source>
 			<index>0</index>
-			<active>false</active>
+			<active>true</active>
 		</docitem>
 		<docitem>
 			<path>src\PongPlayerHandler.java</path>
 			<source>true</source>
 			<index>1</index>
-			<active>true</active>
+			<active>false</active>
+		</docitem>
+		<docitem>
+			<path>src\HostInfo.java</path>
+			<source>true</source>
+			<index>2</index>
+			<active>false</active>
+		</docitem>
+		<docitem>
+			<path>H:\Stu_Dept_Tech Apps\ComputerScienceCD\jdk-6u21-docs\api\java\net\InetAddress.html</path>
+			<source>false</source>
+			<index>3</index>
+			<active>false</active>
 		</docitem>
 	</open_files>
 </workspace_user>

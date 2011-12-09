@@ -15,7 +15,7 @@
 			<path>PongFrame.java</path>
 			<source>true</source>
 			<index>0</index>
-			<active>true</active>
+			<active>false</active>
 		</docitem>
 		<docitem>
 			<path>PongPanel.java</path>
@@ -51,7 +51,7 @@
 			<path>AIPaddle.java</path>
 			<source>true</source>
 			<index>6</index>
-			<active>false</active>
+			<active>true</active>
 		</docitem>
 		<docitem>
 			<path>OnlinePanel.java</path>
@@ -78,9 +78,21 @@
 			<active>false</active>
 		</docitem>
 		<docitem>
-			<path>..\..\..\..\..\Program Files (x86)\Java\jdk1.6.0_18\docs\api\java\awt\event\ContainerListener.html</path>
-			<source>false</source>
+			<path>PongWatcher.java</path>
+			<source>true</source>
 			<index>11</index>
+			<active>false</active>
+		</docitem>
+		<docitem>
+			<path>PongNetworkingBase.java</path>
+			<source>true</source>
+			<index>12</index>
+			<active>false</active>
+		</docitem>
+		<docitem>
+			<path>HostInfo.java</path>
+			<source>true</source>
+			<index>13</index>
 			<active>false</active>
 		</docitem>
 	</open_files>

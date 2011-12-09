@@ -1,11 +1,14 @@
-"C:\\Users\\John Haag\\Desktop\\Pong\\PongClient\\AIPaddle.java"
-"C:\\Users\\John Haag\\Desktop\\Pong\\PongClient\\Ball.java"
-"C:\\Users\\John Haag\\Desktop\\Pong\\PongClient\\OnlinePanel.java"
-"C:\\Users\\John Haag\\Desktop\\Pong\\PongClient\\Paddle.java"
-"C:\\Users\\John Haag\\Desktop\\Pong\\PongClient\\PlayerPaddle.java"
-"C:\\Users\\John Haag\\Desktop\\Pong\\PongClient\\PongClient.java"
-"C:\\Users\\John Haag\\Desktop\\Pong\\PongClient\\PongClientPanel.java"
-"C:\\Users\\John Haag\\Desktop\\Pong\\PongClient\\PongFrame.java"
-"C:\\Users\\John Haag\\Desktop\\Pong\\PongClient\\PongHost.java"
-"C:\\Users\\John Haag\\Desktop\\Pong\\PongClient\\PongPanel.java"
-"C:\\Users\\John Haag\\Desktop\\Pong\\PongClient\\StartPanel.java"
+G:\Pong\PongClient\AIPaddle.java
+G:\Pong\PongClient\Ball.java
+G:\Pong\PongClient\HostInfo.java
+G:\Pong\PongClient\OnlinePanel.java
+G:\Pong\PongClient\Paddle.java
+G:\Pong\PongClient\PlayerPaddle.java
+G:\Pong\PongClient\PongClient.java
+G:\Pong\PongClient\PongClientPanel.java
+G:\Pong\PongClient\PongFrame.java
+G:\Pong\PongClient\PongHost.java
+G:\Pong\PongClient\PongNetworkingBase.java
+G:\Pong\PongClient\PongPanel.java
+G:\Pong\PongClient\PongWatcher.java
+G:\Pong\PongClient\StartPanel.java
