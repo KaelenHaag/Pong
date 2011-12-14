@@ -1,11 +1,12 @@
 import javax.swing.*;
 import java.awt.event.*;
+import javax.swing.event.*;
 
 public class PongClientPanel extends JPanel
 {
 	private PongFrame pf;
 	private PongClient pc;
-	private JList hostInfoList;
+	private JList hostInfoList = new JList();
 	private DefaultListModel hostInfoListModel;
 	private JScrollPane scrollPane;
 	private JButton refreshButton;
@@ -20,9 +21,20 @@ public class PongClientPanel extends JPanel
 	private void createUserInterface()
 	{
 		setLayout(null);
-		hostInfoList = new JList();
 		//hostInfoList.setBounds(25, 25, PongFrame.WIDTH - 100, PongFrame.HEIGHT - 100);
 		hostInfoListModel = new DefaultListModel();
+		hostInfoList.addMouseListener(new MouseAdapter()
+		{
+			public void mouseClicked(MouseEvent e)
+			{
+				if(e.getClickCount() == 2)
+				{
+					int index = hostInfoList.locationToIndex(e.getPoint());
+					pc.makeConnectionToHost((String)hostInfoListModel.getElementAt(index));
+				}
+			}
+		});
+
 		scrollPane = new JScrollPane(hostInfoList);
 		scrollPane.setBounds((PongFrame.WIDTH / 2) - 100, 25, 200, PongFrame.HEIGHT - 100);
 		add(scrollPane);

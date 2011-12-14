@@ -11,7 +11,7 @@ public class PlayerPaddle extends Paddle
 
 	//Originally in PongPanel class but moved to here because it allows us to create bindings for the player
 	//for that specific player. Less hardcoding and more flexible
-	private void createKeyBindings(Side s)
+	protected void createKeyBindings(Side s)
 	{
 		// TIME BETWEEN INPUTS FOR KEY HELD DOWN IS ~31 ns
 		// To calc if key held down do  if(lastTime - e.getTime() <= ~40) (40 just to be safe)

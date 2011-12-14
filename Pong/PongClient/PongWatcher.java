@@ -20,6 +20,7 @@ public class PongWatcher extends Thread
 		{
 			while((line = in.readLine()) != null)
 			{
+				System.out.println(line);
 				if(line.startsWith("NumberOfHosts"))
 				{
 					System.out.println("NumberOfHosts!");

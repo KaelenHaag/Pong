@@ -18,13 +18,13 @@
 			<path>src\PongServer.java</path>
 			<source>true</source>
 			<index>0</index>
-			<active>true</active>
+			<active>false</active>
 		</docitem>
 		<docitem>
 			<path>src\PongPlayerHandler.java</path>
 			<source>true</source>
 			<index>1</index>
-			<active>false</active>
+			<active>true</active>
 		</docitem>
 		<docitem>
 			<path>src\HostInfo.java</path>

@@ -4,17 +4,17 @@ import javax.swing.JOptionPane;
 
 public class PongClient extends PongNetworkingBase
 {
-  	private PongClientPanel pcp;
+  	private PongClientPanel pongClientPanel;
 
 	public PongClient(PongFrame pf)
 	{
 		String serverName = JOptionPane.showInputDialog(null, "Input the name of the computer running the PongServer application on your network", host);
 		host = serverName != null ? serverName : host;
-		pcp = new PongClientPanel(pf, this);
+		pongClientPanel = new PongClientPanel(pf, this);
 
 		if(makeContact())
 		{
-			pf.add(pcp);
+			pf.add(pongClientPanel);
 		}
 	}
 
@@ -38,6 +38,19 @@ public class PongClient extends PongNetworkingBase
     	return true;
 	}
 
+	public boolean makeConnectionToHost(String hostName)
+	{
+		try
+		{
+			out.println("Chosen HOST: " + hostName);
+		}
+		catch(Exception e)
+		{
+			return false;
+		}
+		return true;
+	}
+
 	public void disconnect()
 	{
 		try
@@ -55,7 +68,7 @@ public class PongClient extends PongNetworkingBase
 
 	public void processHostInfo(String hostName)
 	{
-		pcp.addHostInfoToList(hostName);
+		pongClientPanel.addHostInfoToList(hostName);
 	}
 
 	public void requestUpdatedHostInfo()

@@ -33,11 +33,12 @@ public class PongPlayerHandler extends Thread
 		boolean done = false;
 		try
 		{
-			while(!done)
+			while(!done )//&& this.getState() != Thread.State.TERMINATED)
 			{
 				line = in.readLine();
-				if(line == null || line.equals("disconnect"))
+				if(line == null || line.equals("disconnect") || this.getState() == Thread.State.TERMINATED)
 				{
+					out.println("disconnect");
 					server.getMessageArea().append("We're done!\n");
 					done = true;
 				}
@@ -74,6 +75,23 @@ public class PongPlayerHandler extends Thread
 					{
 						server.getMessageArea().append("FETCH request!\n");
 						sendHostInfo();
+						continue;
+					}
+
+					if(line.trim().startsWith("Chosen HOST: "))
+					{
+						String chosenHostName = line.substring(13);
+						server.getMessageArea().append(chosenHostName+"\n");
+
+						ArrayList<HostInfo> hostInfo = server.getPotentialHosts();
+						for(int i = 0; i < hostInfo.size(); i++)
+						{
+							if(hostInfo.get(i).getComputerName() == chosenHostName)
+							{
+								server.getMessageArea().append("Found computer " + chosenHostName+"\n");
+								break;
+							}
+						}
 					}
 
 				}
@@ -104,6 +122,7 @@ public class PongPlayerHandler extends Thread
 	{
 		try
 		{
+			//out.println(")
 			//If this handler is for a host, we need to remove the HostInfo from the hosts list owned by the server.
 			if(type.equals("host") && hi != null)
 			{

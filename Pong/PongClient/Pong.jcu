@@ -51,7 +51,7 @@
 			<path>AIPaddle.java</path>
 			<source>true</source>
 			<index>6</index>
-			<active>true</active>
+			<active>false</active>
 		</docitem>
 		<docitem>
 			<path>OnlinePanel.java</path>
@@ -81,7 +81,7 @@
 			<path>PongWatcher.java</path>
 			<source>true</source>
 			<index>11</index>
-			<active>false</active>
+			<active>true</active>
 		</docitem>
 		<docitem>
 			<path>PongNetworkingBase.java</path>
